@@ -1,0 +1,13 @@
+{% extends "template.j2" %}
+{% block content %}
+
+<h2>Login page</h2>
+
+<form action="post" action="/process">
+    <input type="text" name="name">
+    <br>
+    <textarea type="text" name="comment"></textarea>
+    <br>
+    <button type="submit">contó</button>
+</form>
+{% endblock %}
