@@ -1,6 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://ariel:ariel@localhost/flask-db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -31,7 +34,12 @@ def render(var="World", template="template"):
 
 @app.route('/process', methods=['POST'])
 def proc():
-    return ''
+    name = request.form['name']
+    comment = request.form['comment']
+
+    lan = name + " " + comment
+
+    return render(var=lan)
 
 if __name__ == '__main__':
     """
