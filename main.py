@@ -44,9 +44,12 @@ def proc():
     name = request.form['name']
     comment = request.form['comment']
 
-    lan = name + " " + comment
+    signature = Comments(name=name, comment=comment)
 
-    return render(var=lan)
+    db.session.add(signature)
+    db.session.commit()
+
+    return render(var=name)
 
 if __name__ == '__main__':
     """
