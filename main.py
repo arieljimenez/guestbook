@@ -2,8 +2,15 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://ariel:ariel@localhost/flask-db"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://ariel:ariel@localhost:3306/flask-db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    comment = db.Column(db.String(1000))
 
 
 @app.route('/', methods=['GET', 'POST'])
