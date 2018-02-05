@@ -1,16 +1,9 @@
 #!/bin/bash
 ENV="env"
 
-ctx=`pip freeze | grep virtualenv`
+CURRENT_DIR=${PWD}
 
-echo "+==================================+"
-
-if [ -z $ctx ]; then
-    echo "Installing virtualenv"
-    sudo -H pip install virtualenv
-else
-    echo "Virtualenv found"
-fi
+cd $APPDIR
 
 echo "+==================================+"
 
@@ -25,9 +18,10 @@ echo "+==================================+"
 
 echo "Checking requirements"
 . $ENV/bin/activate && \
-    pip install -r requirements.txt && \
-    deactivate
+    pip install -r ./scripts/requirements.txt -q
 
 echo "+========+"
 echo "| Donete |"
 echo "+========+"
+
+cd $CURRENT_DIR
