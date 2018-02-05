@@ -40,4 +40,3 @@ fi
 
 # Run mysql and do migrations
 mysqld --user=root &
-sleep 3 && cd $APPDIR && python migrations.py

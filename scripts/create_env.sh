@@ -20,8 +20,4 @@ echo "Checking requirements"
 . $ENV/bin/activate && \
     pip install -r ./scripts/requirements.txt -q
 
-echo "+========+"
-echo "| Donete |"
-echo "+========+"
-
 cd $CURRENT_DIR
