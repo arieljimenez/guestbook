@@ -38,4 +38,6 @@ if [ -d /run/mysqld ]; then
         rm -f my.cnf
 fi
 
-mysqld --user=root --console
+# Run mysql and do migrations
+mysqld --user=root &
+sleep 3 && cd $APPDIR && python migrations.py
