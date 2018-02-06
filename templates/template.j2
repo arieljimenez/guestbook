@@ -10,6 +10,8 @@
 <body>
     <a href="{{ url_for('sign') }}">link sign the book</a>
      {% block content %}
-
+        {% for c in comments %}
+            <p><b>{{ c.id }} - {{ c.name }}</b> says: <i>{{ c.comment }}</i> </p>
+        {% endfor %}
      {% endblock %}
 </html>

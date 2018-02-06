@@ -2,32 +2,23 @@ from flask import Flask, render_template, request
 from models import db, Comments
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://ariel:ariel@localhost:3306/flask-db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config.from_pyfile('config.cfg')
 
 db.init_app(app)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def root():
-    return render()
+    comments = Comments.query.all()
+    return render(comments=comments)
 
-@app.route('/home')
-def home():
-    return render("Home")
-
-
-@app.route('/pages/<page>')
-def pages(page):
-    return render(page)
+@app.route('/sign')
+def sign():
+    return render(template="sign")
 
 
-@app.route('/login')
-def login():
-    return render(template="login")
-
-
-def render(var="World", template="template"):
-    return render_template(template +".j2", var=var)
+def render(template="template", comments=None):
+    return render_template(template +".j2", comments=comments)
 
 
 # API
@@ -42,7 +33,7 @@ def proc():
     db.session.add(signature)
     db.session.commit()
 
-    return render(var=name)
+    return root()
 
 if __name__ == '__main__':
     """
