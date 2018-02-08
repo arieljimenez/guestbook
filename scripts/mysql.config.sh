@@ -39,4 +39,6 @@ if [ -d /run/mysqld ]; then
 fi
 
 # Run mysql and do migrations
-mysqld --user=root &
+mysqld --user=root & \
+    sleep 1 && \
+    python ../migrations.py

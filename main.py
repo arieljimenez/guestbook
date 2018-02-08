@@ -16,13 +16,12 @@ def root():
 def sign():
     return render(template="sign")
 
-
+# TEMPLATES
 def render(template="template", comments=None):
     return render_template(template +".j2", comments=comments)
 
 
 # API
-
 @app.route('/process', methods=['POST'])
 def proc():
     name = request.form['name']
@@ -34,6 +33,7 @@ def proc():
     db.session.commit()
 
     return root()
+
 
 if __name__ == '__main__':
     """
