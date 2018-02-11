@@ -17,7 +17,7 @@ def sign():
     return render(template="sign")
 
 # TEMPLATES
-def render(template="template", comments=None):
+def render(template="home", comments=None):
     return render_template(template +".j2", comments=comments)
 
 
